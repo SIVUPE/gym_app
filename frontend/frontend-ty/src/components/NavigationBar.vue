@@ -61,15 +61,6 @@
               style="font-family: 'Manrope', sans-serif"
               >Contact
             </router-link>
-            <button>
-              <!-- Cart -->
-              <router-link
-                to="/cart"
-                class="nav-link"
-                style="font-family: 'Manrope', sans-serif"
-                >Cart
-              </router-link>
-            </button>
           </div>
         </div>
       </div>
@@ -105,6 +96,16 @@ export default {
   display: flex;
 }
 
+.nav-link {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.navbar-nav {
+  align-items: center;
+  padding-left: 720px;
+}
+
 @media only screen and (max-width: 600px) {
   .navigation-image {
     width: 150px;
@@ -113,13 +114,6 @@ export default {
   .navigation-container {
     background-color: #141414;
     height: 90px;
-  }
-  .icon-container {
-    display: flex;
-    position: absolute;
-    justify-content: space-between;
-    margin-top: 40px;
-    margin-left: 150px;
   }
 }
 </style>

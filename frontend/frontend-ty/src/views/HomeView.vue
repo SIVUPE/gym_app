@@ -2,14 +2,14 @@
   <div class="background-image">
     <Loader v-if="loading" />
     <div class="home-content" v-else>
-      <img src="https://i.ibb.co/7vhH7MN/Gold-s-Gym.jpg" />
+      <img src="https://i.ibb.co/7vhH7MN/Gold-s-Gym.jpg" w-100 style="object-fit: contain;"/>
       <div class="text-container">
-        <h1>SHOW YOUR <span style="color: #F9EF23;">BEST</span></h1>
+        <h1>SHOW YOUR <span style="color: #F9EF23;">BEST</span> </h1>
         <button>
           <router-link
               to="/services"
-              class="nav-link"
-              style="font-family: 'Manrope', sans-serif"
+              class="service-link"
+              style="font-family: 'Manrope', sans-serif; "
               >OUR SERVICES
             </router-link>
         </button>
@@ -58,7 +58,7 @@ export default {
 }
 
 h1 {
-  font-size: 96px;
+  font-size: 128px;
   margin-bottom: 20px;
   font-weight: 1000;
 }
@@ -72,6 +72,12 @@ button {
     cursor: pointer;
     font-weight: 400;
     border-radius: 7px;
+    width: 200px;
+}
+
+.service-link {
+  color: white;
+  text-decoration: none;
 }
 
 /* MEDIA QUERIES */
@@ -108,6 +114,13 @@ button {
     cursor: pointer;
     font-weight: 400;
     border-radius: 7px;
+    width: 130px;
+}
+
+.service-link {
+  color: white;
+  font-size: x-small;
+  text-decoration: none;
 }
 }
 </style>

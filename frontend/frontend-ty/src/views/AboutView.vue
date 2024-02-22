@@ -1,16 +1,25 @@
 <!-- HTML -->
 <template>
   <div class="about">
-    <div class="description" id="description">
-      <div id="description-head" style="margin-bottom: 180px; border: 1px solid">
-      <h1>ABOUT OUR FIT FAMILY</h1>  
-      </div>
-      <div id="description-text" style="border: 1px solid; padding-bottom: 20px;">
+    <div
+      class="description"
+      id="description"
+      style="border: 1px solid #234643; margin-bottom: 100px;"
+    >
+      <div
+        id="description-head"
+        style="border: 1px solid"
+      >
+        <h1>ABOUT OUR FIT FAMILY</h1>
+        <div
+        id="description-text"
+        style="border: 1px solid; padding-bottom: 20px"
+      >
         <h3>
-        Nexus was founded in 2024. <br />Since then, we have expanded to 3
-        various locations nation wide
-      </h3>
-    </div>
+          Nexus was founded in 2024. <br />Since then, we have expanded to 3
+          various locations nation wide
+        </h3>
+      </div>
       <!-- Services -->
       <router-link
         to="/services"
@@ -18,6 +27,7 @@
         style="font-family: 'Manrope', sans-serif"
         >Our Merch
       </router-link>
+      </div>
     </div>
     <!-- Images -->
     <div class="about-image">
@@ -45,11 +55,12 @@
 <!-- CSS -->
 <style>
 /* Div Positioning */
-.description, .about-image {
+.description,
+.about-image {
   display: inline-block;
-  width: 48%; 
-  margin-right: 2%; 
-  box-sizing: border-box; 
+  width: 48%;
+  margin-right: 2%;
+  box-sizing: border-box;
 }
 
 #description-head {
@@ -86,7 +97,8 @@
 }
 
 .about-image div {
-  width: 378px; margin-left: 170px;
+  width: 378px;
+  margin-left: 170px;
 }
 
 .about-image1-div {

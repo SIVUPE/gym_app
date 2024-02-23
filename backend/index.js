@@ -28,7 +28,10 @@ app.use(
     cookieParser(),
     cors()
 )
-app.get('^/$|/gym_app', (req, res)=>{
+
+app.get('^/$|/gym_app', (req, res)=>
+app.get('^/$|/lifechoices', (req, res)=>{
+
     res.status(200).sendFile(path.join(__dirname, './static/index.html'))
 })
 app.use('/users',userRouter)

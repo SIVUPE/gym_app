@@ -115,5 +115,9 @@ export default {
     background-color: #141414;
     height: 90px;
   }
+  .navbar-nav {
+  /* align-items: center; */
+  padding-left: 10px;
+}
 }
 </style>

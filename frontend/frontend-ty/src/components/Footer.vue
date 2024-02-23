@@ -53,7 +53,6 @@ export default {
 <!-- CSS -->
 <style scoped>
 .footer-content {
-  border-top: solid 1px #696969;
   background-color: #323232;
   display: flex;
   justify-content: space-between;

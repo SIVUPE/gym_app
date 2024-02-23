@@ -1,7 +1,7 @@
 import { userRouter, express } from "./Controllers/UserController.js";
 import { productRouter } from "./Controllers/ProductsController.js";
 import cookieParser from "cookie-parser";
-import { errorHandling} from "./middleware/ErrorHandling.js";
+// import { errorHandling} from "./middleware/ErrorHandling.js";
 import path from "path";
 import cors from "cors"
 import { config } from "dotenv";
@@ -28,15 +28,12 @@ app.use(
     cookieParser(),
     cors()
 )
-
-app.get('^/$|/gym_app', (req, res)=>
-app.get('^/$|/lifechoices', (req, res)=>{
-
+app.get('^/$|/gym_app', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, './static/index.html'))
 })
 app.use('/users',userRouter)
 app.use('/products', productRouter)
-app.use(errorHandling)
+// app.use(errorHandling)
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`);
 })

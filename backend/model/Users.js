@@ -1,6 +1,6 @@
-import { connection as db } from "../config/index.js";
+import { connection as db } from "../backend/config/index.js";
 import { hash, compare } from "bcrypt";
-import { createToken } from "../middleware/AuthenticateUser.js";
+// import { createToken } from "../middleware/AuthenticateUser.js";
 class Users {
   fetchUsers(req, res) {
     const qry = `

@@ -11,7 +11,7 @@ function createToken(user){
     },
     process.env.SECRET_KEY,
     {
-        expireIn: '1h'
+        expiresIn: '1h'
     }
     )
 }

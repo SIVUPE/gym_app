@@ -1,29 +1,25 @@
 import { connection as db } from "../config/index.js";
 
 class Products {
-    // fetchProducts(req, res) {
-    //   const qry = `
-    //       SELECT prodID,
-    //        prodName,
-    //       prodQuantity,
-    //       prodAmount,
-    //       FROM Products;
-    //       `;
-    //   db.query(qry, [req.body],(err, results) => {
-    //     if (err) throw err;
-    //     res.json({
-    //       status: res.statusCode,
-    //       results,
-    //     })
-    //   })
-    // }
     fetchProducts(req, res) {
+      const qry = `
+          SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl FROM products; `;
+      db.query(qry, [req.body],(err, results) => {
+        if (err) throw err;
+        res.json({
+          status: res.statusCode,
+          results,
+        })
+      })
+    }
+    fetchProduct(req, res) {
         const qry = `
         SELECT prodID, 
         prodName,
         prodQuantity,
         prodAmount,
-        FROM Users;
+        prodUrl,
+        FROM products;
         WHERE prodID = ${req.params.id};
         `;
         db.query(qry, (err, result) => {
@@ -34,9 +30,9 @@ class Products {
           });
         });
       }
-      addProducts(req, res) {
+      addProduct(req, res) {
         const qry = `
-        INSERT INTO Products 
+        INSERT INTO products 
         SET ?;
         `
         db.query(qry,(err)=>{
@@ -47,9 +43,9 @@ class Products {
             })
         })
       }
-      updateProducts(req, res) {
+      updateProduct(req, res) {
         const qry = `
-        UPDATE Products
+        UPDATE products
         SET ?
         WHERE prodID = ${req.params.id};
         `
@@ -61,9 +57,9 @@ class Products {
             })
         })
     }
-    deleteProducts(req, res) {
+    deleteProduct(req, res) {
         const qry = `
-        DELETE FROM Products
+        DELETE FROM products
         WHERE prodID = ${req.params.id};
         `
         db.query(qry, (err)=>{

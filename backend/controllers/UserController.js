@@ -76,5 +76,6 @@ userRouter.get('/',(req, res)=>{
 
  export{
     userRouter,
-    express
+    express,
+    verifyAToken
  }

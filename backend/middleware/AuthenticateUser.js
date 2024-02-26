@@ -7,7 +7,7 @@ function createToken(user){
     return sign({
         emailAdd: user.emailAdd,
 
-        userPwd: user.user.pwd
+        userPwd: user.userPwd
     },
     process.env.SECRET_KEY,
     {

@@ -1,41 +1,38 @@
 import { connection as db } from "../config/index.js";
 
 class Products {
-    fetchUsers(req, res) {
-      const qry = `
-          SELECT prodID,
-           prodName,
-          prodQuantity,
-          prodAmount,
-          userID,
-          FROM Products;
-          `;
-      db.query(qry, [req.body],(err, results) => {
-        if (err) throw err;
-        res.json({
-          status: res.statusCode,
-          results,
-        })
-      })
-    }
-    fetchUser(req, res) {
+    // fetchProducts(req, res) {
+    //   const qry = `
+    //       SELECT prodID,
+    //        prodName,
+    //       prodQuantity,
+    //       prodAmount,
+    //       FROM Products;
+    //       `;
+    //   db.query(qry, [req.body],(err, results) => {
+    //     if (err) throw err;
+    //     res.json({
+    //       status: res.statusCode,
+    //       results,
+    //     })
+    //   })
+    // }
+    fetchProducts(req, res) {
         const qry = `
         SELECT prodID, 
         prodName,
         prodQuantity,
-    
-         prodAmount,
-        userID
+        prodAmount,
         FROM Users;
-        WHERE userID = ${req.params.id};
+        WHERE prodID = ${req.params.id};
         `;
         db.query(qry, (err, result) => {
           if (err) throw err;
           res.json({
             status: res.statusCode,
-            result: result[0]
-          })
-        })
+            result,
+          });
+        });
       }
       addProducts(req, res) {
         const qry = `
@@ -50,7 +47,7 @@ class Products {
             })
         })
       }
-      updateProduct(req, res) {
+      updateProducts(req, res) {
         const qry = `
         UPDATE Products
         SET ?
@@ -64,7 +61,7 @@ class Products {
             })
         })
     }
-    deleteProduct(req, res) {
+    deleteProducts(req, res) {
         const qry = `
         DELETE FROM Products
         WHERE prodID = ${req.params.id};
@@ -77,8 +74,8 @@ class Products {
             })
         })
     }
-
 }
+
 export{
     Products
 }

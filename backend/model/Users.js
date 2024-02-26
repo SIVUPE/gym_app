@@ -97,7 +97,7 @@ async deleteUser(req, res) {
     DELETE FROM Users
     WHERE userID = ${userId};
   `;
-  db.query(qry, (err, result) => {
+  db.query(qry, (err) => {
     if (err) throw err;
     res.json({
       status: res.statusCode,

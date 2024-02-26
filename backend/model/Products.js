@@ -3,8 +3,9 @@ import { connection as db } from "../config/index.js";
 class Products {
     fetchProducts(req, res) {
       const qry = `
-          SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl FROM Products; `;
-      db.query(qry, [req.body],(err, results) => {
+          SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl 
+          FROM Products `;
+      db.query(qry,(err, results) => {
         if (err) throw err;
         res.json({
           status: res.statusCode,
@@ -26,7 +27,7 @@ class Products {
           if (err) throw err;
           res.json({
             status: res.statusCode,
-            result,
+            result: result[0],
           });
         });
       }

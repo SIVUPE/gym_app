@@ -49,10 +49,10 @@
             </router-link>
             <!-- Testimonial -->
             <router-link
-              to="/testimonial"
+              to="/admin"
               class="nav-link"
               style="font-family: 'Manrope', sans-serif"
-              >Testimonials
+              >Admin
             </router-link>
             <!-- Contact -->
             <router-link

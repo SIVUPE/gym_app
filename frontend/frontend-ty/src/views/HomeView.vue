@@ -2,9 +2,9 @@
   <div class="background-image">
     <Loader v-if="loading" />
     <div class="home-content" v-else>
-      <img src="https://i.ibb.co/7vhH7MN/Gold-s-Gym.jpg" w-100 style="object-fit: contain;"/>
+      <img src="https://i.ibb.co/7vhH7MN/Gold-s-Gym.jpg"  style="object-fit: content;"/>
       <div class="text-container">
-        <h1>SHOW YOUR <span style="color: #F9EF23;">BEST</span> </h1>
+        <h1>SHOW YOUR <br> <span style="color: #F9EF23;">BEST</span> </h1>
         <button>
           <router-link
               to="/services"
@@ -41,6 +41,7 @@ export default {
 <!-- CSS -->
 <style scoped>
 .background-image img {
+  height: 700px;
   width: 100%;
 }
 
@@ -58,7 +59,7 @@ export default {
 }
 
 h1 {
-  font-size: 128px;
+  font-size: 80px;
   margin-bottom: 20px;
   font-weight: 1000;
 }

@@ -1,7 +1,7 @@
 <!-- HTML -->
 <template>
   <!-- Navigation Bar -->
-  <Navigation />
+  <Navigation v-if="!loading"/>
   <!-- End of Navigation Bar -->
   <router-view />
   <!-- <RouterView /> -->

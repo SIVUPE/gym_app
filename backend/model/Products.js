@@ -3,7 +3,7 @@ import { connection as db } from "../config/index.js";
 class Products {
     fetchProducts(req, res) {
       const qry = `
-          SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl FROM products; `;
+          SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl FROM Products; `;
       db.query(qry, [req.body],(err, results) => {
         if (err) throw err;
         res.json({
@@ -19,7 +19,7 @@ class Products {
         prodQuantity,
         prodAmount,
         prodUrl,
-        FROM products;
+        FROM Products;
         WHERE prodID = ${req.params.id};
         `;
         db.query(qry, (err, result) => {
@@ -32,7 +32,7 @@ class Products {
       }
       addProduct(req, res) {
         const qry = `
-        INSERT INTO products 
+        INSERT INTO Products 
         SET ?;
         `
         db.query(qry,(err)=>{
@@ -45,7 +45,7 @@ class Products {
       }
       updateProduct(req, res) {
         const qry = `
-        UPDATE products
+        UPDATE Products
         SET ?
         WHERE prodID = ${req.params.id};
         `
@@ -59,7 +59,7 @@ class Products {
     }
     deleteProduct(req, res) {
         const qry = `
-        DELETE FROM products
+        DELETE FROM Products
         WHERE prodID = ${req.params.id};
         `
         db.query(qry, (err)=>{

@@ -1,5 +1,52 @@
+<!-- AdminView.vue -->
 <template>
-    <div class="admin">
-      <h1>This is an admin page</h1>
-    </div>
-  </template>
+  <div>
+    <h1>Admin View</h1>
+
+  </div>
+  <RouterLink to="/admin">Products</RouterLink>
+  <RouterLink to="/user">Users</RouterLink>
+  <table class="table" v-if="products">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody v-for="product in products" :key="product.prodID">
+    <tr>
+      <th scope="row"><img :src="product.prodUrl" alt="Admin"> </th>
+      <td>{{ product.prodName }}</td>
+      <td>{{ product.prodAmount }}</td>
+      <td></td>
+      <td><button class="btn btn-dark"> Edit</button></td>
+      <td><button class="btn btn-dark"> delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</template>
+
+<script>
+
+
+export default {
+  components: {
+
+  },
+  computed: {
+
+    products(){
+      return this.$store.state.products
+
+    }
+    // products add here
+  },
+  mounted() {
+    this.$store.dispatch('fetchProducts');
+    
+  },
+};
+</script>

@@ -15,7 +15,7 @@
 <script>
 import Navigation from "@/components/NavigationBar.vue";
 import Footer from "@/components/Footer.vue";
-import Membership from "@/components/Membership.vue";
+// import Membership from "@/components/Membership.vue";
 import { RouterView } from "vue-router";
 
 export default {
@@ -23,7 +23,7 @@ export default {
   components: {
     Navigation,
     Footer,
-    Membership
+    // Membership
 },
 };
 </script>

@@ -1,7 +1,7 @@
 <!-- HTML -->
 <template>
   <div class="services" style="display: flex; border: 10px solid orange;">
-    <div>
+    <div class="services-description" style="border: 3px solid red; height: 100px;">
       <h1 style="color: #f9ef23">WHAT WE OFFER</h1>
       <p>We're committed to bringing you the best workout experience.</p>
     </div>
@@ -76,10 +76,12 @@ export default {
 }
 .services {
   background-color: #141414;
+  color: white;
 }
 
 .image-content {
   display: flex;
+  margin-top: 100px;
   justify-content: space-between;
 }
 

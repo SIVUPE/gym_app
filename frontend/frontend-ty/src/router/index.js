@@ -4,7 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import ServiceView from '../views/ServiceView.vue'
 import AdminView from '../views/AdminView.vue'
 import ContactView from '../views/ContactView.vue'
-import Membership from '../components/Membership.vue'
+import UserView from '../views/UserView.vue'
 
 const routes = [
   {
@@ -45,12 +45,20 @@ const routes = [
     component: ContactView
   },
   {
-    path: '/membership',
-    name: 'membership',
+    path: '/user',
+    name: 'user',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: Membership
+    component: UserView
+  },
+  {
+    // path: '/membership',
+    // name: 'membership',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    // component: Membership
   }
 ]
 

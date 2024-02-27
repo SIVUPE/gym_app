@@ -1,37 +1,62 @@
 <!-- Card.vue -->
 
 <template>
-    <div class="card" v-for="user in users" v-bind:key="user.userID" >
-      <h2>{{ user.firstName }} {{ user.lastName }}</h2>
-      <p>Email: {{ user.emailAdd }}</p>
-      <p>Gender: {{ user.gender }}</p>
-      <p>User Role: {{ user.userRole }}</p>
+  <div v-if="products">
+    <div class="card" v-if="products">
+      <div  v-for="product in products" :key="product.prodID">
+        <h1> {{ product.prodName }}</h1>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "Card",
-    computed: {
-    users() {
-        console.log(this.$store.state.users);
-      return this.$store.state.users;
-    },
+    <table class="table" v-if="products">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody v-for="product in products" :key="product.prodID">
+    <tr>
+      <th scope="row"><img :src="product.prodUrl" alt="Admin"> </th>
+      <td>{{ product.prodName }}</td>
+      <td>{{ product.prodAmount }}</td>
+      <td></td>
+      <td><button class="btn btn-dark"> Edit</button></td>
+      <td><button class="btn btn-dark"> delete</button></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {
+
+  },
+  computed: {
+
+    products(){
+      return this.$store.state.products
+
+    }
     // products add here
   },
   mounted() {
-    this.$store.dispatch('fetchUsers');
+    this.$store.dispatch('fetchProducts');
+    
   },
-  };
-  </script>
-  
-  <style scoped>
-  .card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  </style>
-  
+};
+</script>
+
+<style scoped>
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+</style>

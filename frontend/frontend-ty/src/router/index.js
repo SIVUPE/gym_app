@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ServiceView from '../views/ServiceView.vue'
-import TestimonialView from '../views/TestimonialView.vue'
+import AdminView from '../views/AdminView.vue'
 import ContactView from '../views/ContactView.vue'
-import CartView from '../views/CartView.vue'
+import Membership from '../components/Membership.vue'
 
 const routes = [
   {
@@ -29,12 +29,12 @@ const routes = [
     component: ServiceView
   },
   {
-    path: '/testimonial',
-    name: 'testimonial',
+    path: '/admin',
+    name: 'admin',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: TestimonialView
+    component: AdminView
   },
   {
     path: '/contact',
@@ -45,12 +45,12 @@ const routes = [
     component: ContactView
   },
   {
-    path: '/cart',
-    name: 'cart',
+    path: '/membership',
+    name: 'membership',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: CartView
+    component: Membership
   }
 ]
 

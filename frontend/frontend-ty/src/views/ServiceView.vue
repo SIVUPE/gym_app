@@ -1,6 +1,6 @@
 <!-- HTML -->
 <template>
-  <div class="services" style="display: flex">
+  <div class="services" style="display: flex; border: 10px solid orange;">
     <div>
       <h1 style="color: #f9ef23">WHAT WE OFFER</h1>
       <p>We're committed to bringing you the best workout experience.</p>

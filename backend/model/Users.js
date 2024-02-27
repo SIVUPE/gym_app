@@ -13,7 +13,7 @@ class Users {
         FROM Users;
         `;
     db.query(qry, (err, results) => {
-      if (err) throw err;
+      if (err) console.log(err);
       res.json({
         status: res.statusCode,
         results,

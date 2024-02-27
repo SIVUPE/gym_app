@@ -1,13 +1,12 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-const renderURL = 'https://'
+const renderURL = 'https://gym-app-8i2h.onrender.com/'
+
 
 export default createStore({
   state: {
     users: null,
     products: null,
-    loader: true,
-    message: null
   },
   getters: {
   },
@@ -18,7 +17,7 @@ export default createStore({
   },
   actions: {
     async fetchUsers({commit}) {
-        const users = await axios.get('${renderURL}users')
+        const res = await axios.get('https://gym-app-8i2h.onrender.com/')
   },
 },
   modules: {

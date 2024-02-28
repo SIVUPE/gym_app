@@ -3,7 +3,8 @@ import { connection as db } from "../config/index.js";
 class Products {
     fetchProducts(req, res) {
       const qry = `
-          SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl 
+          SELECT prodID, prodName, prodQuantity, prodAmount,prodDescrip,
+          prodCategory, prodUrl 
           FROM Products`;
       db.query(qry,(err, results) => {
         if (err) throw err;

@@ -2,11 +2,24 @@
 
 <template>
   <div v-if="products">
-    <div class="card" v-if="products">
-      <div  v-for="product in products" :key="product.prodID">
-        <h1> {{ product.prodName }}</h1>
+    <!-- <div class="card" style="width: 18rem" v-for="product in products" :key="product.prodID">
+      <img :src="product.prodUrl" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.prodName }}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
-    </div>
+    </div> -->
+    <!-- Old -->
+    <!-- <div class="card" v-if="products">
+      <div v-for="product in products" :key="product.prodID">
+        <img :src="product.prodUrl" alt="Admin" />
+        <h1>{{ product.prodName }}</h1>
+      </div>
+    </div> -->
     <table class="table" v-if="products">
   <thead>
     <tr>
@@ -33,20 +46,15 @@
 
 <script>
 export default {
-  components: {
-
-  },
+  components: {},
   computed: {
-
-    products(){
-      return this.$store.state.products
-
-    }
+    products() {
+      return this.$store.state.products;
+    },
     // products add here
   },
   mounted() {
-    this.$store.dispatch('fetchProducts');
-    
+    this.$store.dispatch("fetchProducts");
   },
 };
 </script>

@@ -28,7 +28,7 @@ productRouter.get('/:id',(req, res)=>{
 })
 productRouter.post('/addProduct', bodyParser.json(), (req, res)=>{
     try{
-        products  .fetchProduct(req, res)
+        products.addProduct(req, res)
     }catch(e) {
         res.json({
             status: res.statusCode,

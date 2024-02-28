@@ -19,6 +19,8 @@ class Products {
         prodName,
         prodQuantity,
         prodAmount,
+        prodDescrip,
+        prodCategory,
         prodUrl,
         FROM Products;
         WHERE prodID = ${req.params.id};

@@ -49,8 +49,15 @@
 
     <!-- Products -->
     <!-- Sorting, Filter, Search Bar -->
-    <div style="display: flex; flex-direction: column; text-align: center; margin-top: 100px;">
-      <input type="text" v-model="searchTerm" placeholder="Search...">
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 100px;
+      "
+    >
+      <input type="text" v-model="searchTerm" placeholder="Search..." />
     </div>
     <!-- End of Search -->
 
@@ -72,8 +79,12 @@
           v-for="product in products"
           :key="product.prodID"
           :product="product"
-          v-show="product.prodCategory === 'Services' && (searchTerm === '' || product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))"
->
+          v-show="
+            product.prodCategory === 'Services' &&
+            (searchTerm === '' ||
+              product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
+          "
+        >
           <div>
             <div>
               <h5>{{ product.prodName }}</h5>
@@ -89,74 +100,100 @@
     <!-- Classes -->
     <div style="display: flex; flex-direction: column; text-align: center">
       <h1 style="margin-top: 150px; color: #f9ef23">
-      <a id="memberships">CLASSES</a>
-    </h1>
-    <div
-      style="display: flex; flex-direction: row; justify-content: space-evenly"
-    >
+        <a id="memberships">CLASSES</a>
+      </h1>
       <div
-        class="card-classes"
-        style="border: 10px solid grey; border-radius: 7px"
-        v-for="product in products"
-        :key="product.prodID"
-        v-show="product.prodCategory === 'Classes' && (searchTerm === '' || product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))"
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+        "
       >
-        <div>
-          <img :src="product.prodUrl" class="card-img-top" alt="..." />
+        <div
+          class="card-classes"
+          style="border: 10px solid grey; border-radius: 7px"
+          v-for="product in products"
+          :key="product.prodID"
+          v-show="
+            product.prodCategory === 'Classes' &&
+            (searchTerm === '' ||
+              product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
+          "
+        >
           <div>
-            <h5>{{ product.prodName }}</h5>
-            <p>R{{ product.prodAmount }}</p>
-            <p>{{ product.prodDescrip }}</p>
+            <img :src="product.prodUrl" class="card-img-top" alt="..." />
+            <div>
+              <h5>{{ product.prodName }}</h5>
+              <p>R{{ product.prodAmount }}</p>
+              <p>{{ product.prodDescrip }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
     <!-- End of Classes -->
 
     <!-- Merch -->
     <div style="display: flex; flex-direction: column; text-align: center">
       <h1 style="margin-top: 150px; color: #f9ef23">
-      <a id="merch">OUR MERCH</a>
-    </h1>
-    <p>"Nexus Gym's merchandise stands out as the epitome of fitness fashion, seamlessly blending style and functionality. With cutting-edge designs and high-quality materials, Nexus Gym merch not only represents a commitment to a healthy lifestyle but also ensures that you look and feel your best during every workout, making it the top choice for fitness enthusiasts."</p>
-    <div
-      style="display: flex; flex-direction: row; justify-content: space-evenly"
-    >
+        <a id="merch">OUR MERCH</a>
+      </h1>
+      <p>
+        "Nexus Gym's merchandise stands out as the epitome of fitness fashion,
+        seamlessly blending style and functionality. With cutting-edge designs
+        and high-quality materials, Nexus Gym merch not only represents a
+        commitment to a healthy lifestyle but also ensures that you look and
+        feel your best during every workout, making it the top choice for
+        fitness enthusiasts."
+      </p>
       <div
-        class="card"
-        v-for="product in products"
-        :key="product.prodID"
-        v-show="product.prodCategory === 'Products' && (searchTerm === '' || product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))"
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+        "
       >
-        <div>
-          <h5 style="color: white; text-align: center">
-            {{ product.prodName }}
-          </h5>
-          <img
-            :src="product.prodUrl"
-            class="card-img-top"
-            alt="..."
-            style="margin: 0 auto"
-          />
-          <p style="color: white; text-align: center">
-            R{{ product.prodAmount }}
-          </p>
-          <div style="margin: 0 auto">
-            <button
-              style="
-                background-color: #6d690b;
-                border-radius: 7px;
-                color: white;
-              "
-            >
-            <router-link :to="{ compoent: 'SingleView', params: { id: prodID } }">View</router-link>
-            </button>
+      <router-link
+        v-for="product in products"
+        to="/singleview"
+            :key="product.prodID"
+            v-show="
+              product.prodCategory === 'Products' &&
+              (searchTerm === '' ||
+                product.prodName
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase()))
+            ">
+          <div
+            class="card"
+          >
+            <div>
+              <h5 style="color: white; text-align: center">
+                {{ product.prodName }}
+              </h5>
+              <img
+                :src="product.prodUrl"
+                class="card-img-top"
+                alt="..."
+                style="margin: 0 auto"
+              />
+              <p style="color: white; text-align: center">
+                R{{ product.prodAmount }}
+              </p>
+              <div style="margin: 0 auto">
+                <button
+                  style="
+                    background-color: #6d690b;
+                    border-radius: 7px;
+                    color: white;
+                  "
+                ></button>
+              </div>
+            </div>
           </div>
-        </div>
+        </router-link>
       </div>
-    </div>
-    <!-- End of Merch -->
+      <!-- End of Merch -->
     </div>
   </div>
 </template>
@@ -164,8 +201,7 @@
 <!-- JAVASCRIPT -->
 <script>
 export default {
-  components: {
-  },
+  components: {},
   computed: {
     products() {
       return this.$store.state.products;
@@ -178,7 +214,7 @@ export default {
   // Calling Individual Products
   data() {
     return {
-      searchTerm: '',
+      searchTerm: "",
       products: [
         {
           prodID: 1,

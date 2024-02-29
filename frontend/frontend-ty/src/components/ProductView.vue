@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 <div v-if="products">
     <div v-for="product in products" :key="product.prodID">
     <img :src="product.prodUrl">
@@ -22,4 +22,4 @@ export default {
     this.$store.dispatch("fetchProducts");
   },
 };
-</script>
+</script> -->

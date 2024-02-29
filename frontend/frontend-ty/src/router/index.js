@@ -52,14 +52,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: UserView
   },
-  {
-    // path: '/membership',
-    // name: 'membership',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    // component: Membership
-  }
+  // {
+  //   path: '/membership',
+  //   name: 'membership',
+  //   route level code-splitting
+  //   this generates a separate chunk (about.[hash].js) for this route
+  //   which is lazy-loaded when the route is visited.
+  //   component: Membership
+  // },
+  
 ]
 
 const router = createRouter({

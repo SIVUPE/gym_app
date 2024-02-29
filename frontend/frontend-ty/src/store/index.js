@@ -46,17 +46,17 @@ export default createStore({
             title: 'Registration',
             text: msg,
             icon: "success",
-            timer: 2000
+            timer: 4000
           })
           //
           router.push({name: 'login'})
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'Please try again later',
+          title: 'Registration Error!',
+          text: 'Registration Incomplete',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },
@@ -68,10 +68,10 @@ export default createStore({
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'An error occurred when retrieving users.',
+          title: 'Retrieving All Users Error!',
+          text: 'Users Not Found',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },
@@ -82,18 +82,18 @@ export default createStore({
           context.commit('setUser', result)
         }else {
           sweet({
-            title: 'Retrieving a single user',
-            text: 'User was not found',
+            title: 'Retrieving Specific User Error!',
+            text: 'User Not Found',
             icon: "info",
-            timer: 2000
+            timer: 4000
           })
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'A user was not found.',
+          title: 'Retrieving Specific User Error!',
+          text: 'User Does Not Exist',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },
@@ -103,18 +103,18 @@ export default createStore({
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
-            title: 'Update user',
+            title: 'User Update Successful',
             text: msg,
             icon: "success",
-            timer: 2000
+            timer: 4000
           })
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'An error occurred when updating a user.',
-          icon: "success",
-          timer: 2000
+          title: 'User Update Error!',
+          text: 'User Update Unsuccessful',
+          icon: "error",
+          timer: 4000
         })
       }
     },
@@ -124,18 +124,18 @@ export default createStore({
         if(msg) {
           context.dispatch('fetchUsers')
           sweet({
-            title: 'Delete user',
+            title: 'User Removed Successfully',
             text: msg,
             icon: "success",
-            timer: 2000
+            timer: 4000
           })
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'An error occurred when deleting a user.',
+          title: 'User Removal Error!',
+          text: 'Deleting User Unsuccessful',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },
@@ -150,7 +150,7 @@ export default createStore({
         AuthenticateUser.applyToken(token)
         sweet({
           title: msg,
-          text: `Welcome back,
+          text: `Great Seeing You Again,
           ${result?.firstName} ${result?.lastName}`,
           icon: "success",
           timer: 2000
@@ -158,18 +158,18 @@ export default createStore({
           router.push({name: 'home'})
         }else {
           sweet({
-            title: 'info',
+            title: 'Login Error',
             text: msg,
             icon: "info",
-            timer: 2000
+            timer: 4000
           })
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'Failed to login.',
+          title: 'Login Error',
+          text: 'Try Again, Nexus Gym Wants You!',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },
@@ -182,10 +182,10 @@ export default createStore({
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'An error occurred when retrieving products.',
+          title: 'Product Retrieval Error!',
+          text: 'Product Retrieval Unsuccessful',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },
@@ -196,18 +196,18 @@ export default createStore({
           context.commit('setProduct', result)
         }else {
           sweet({
-            title: 'Retrieving a single product',
-            text: 'Product was not found',
+            title: 'Product Single View Error!',
+            text: 'Product Single View Unsuccessful',
             icon: "info",
-            timer: 2000
+            timer: 4000
           })
         }
       }catch(e) {
         sweet({
-          title: 'Error',
-          text: 'A product was not found.',
+          title: 'Product Single View Error!',
+          text: 'Product Single View Unsuccessful',
           icon: "error",
-          timer: 2000
+          timer: 4000
         })
       }
     },

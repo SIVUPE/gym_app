@@ -54,8 +54,8 @@ const routes = [
     component: UserView
   },
   {
-    path: '/singleview/:id',
-    name: 'singleview',
+    path: '/singleview/products/:id',
+    name: 'singleview/products/:id',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

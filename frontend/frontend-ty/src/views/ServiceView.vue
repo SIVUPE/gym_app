@@ -73,17 +73,19 @@
           justify-content: space-evenly;
         "
       >
-        <div
-          class="card-membership"
-          style="border: 10px solid grey; border-radius: 7px"
+      <router-link
           v-for="product in products"
+          :to="'/singleview/products/' + product.prodID"
           :key="product.prodID"
-          :product="product"
           v-show="
             product.prodCategory === 'Services' &&
             (searchTerm === '' ||
               product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
           "
+        >
+        <div
+          class="card-membership"
+          style="border: 10px solid grey; border-radius: 7px"
         >
           <div>
             <div>
@@ -93,6 +95,7 @@
             </div>
           </div>
         </div>
+        </router-link>
       </div>
     </div>
     <!-- End of Memberships -->
@@ -109,16 +112,19 @@
           justify-content: space-evenly;
         "
       >
-        <div
-          class="card-classes"
-          style="border: 10px solid grey; border-radius: 7px"
+      <router-link
           v-for="product in products"
+          :to="'/singleview/products/' + product.prodID"
           :key="product.prodID"
           v-show="
             product.prodCategory === 'Classes' &&
             (searchTerm === '' ||
               product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
           "
+        >
+        <div
+          class="card-classes"
+          style="border: 10px solid grey; border-radius: 7px"
         >
           <div>
             <img :src="product.prodUrl" class="card-img-top" alt="..." />
@@ -128,7 +134,8 @@
               <p>{{ product.prodDescrip }}</p>
             </div>
           </div>
-        </div>
+          </div>
+        </router-link>
       </div>
     </div>
     <!-- End of Classes -->
@@ -153,20 +160,18 @@
           justify-content: space-evenly;
         "
       >
-      <router-link
-        v-for="product in products"
-        to="/singleview"
-            :key="product.prodID"
-            v-show="
-              product.prodCategory === 'Products' &&
-              (searchTerm === '' ||
-                product.prodName
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase()))
-            ">
-          <div
-            class="card"
-          >
+        <router-link
+          v-for="product in products"
+          :to="'/singleview/products/' + product.prodID"
+          :key="product.prodID"
+          v-show="
+            product.prodCategory === 'Products' &&
+            (searchTerm === '' ||
+              product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
+          "
+        >
+          <!-- Your product card content here -->
+          <div class="card">
             <div>
               <h5 style="color: white; text-align: center">
                 {{ product.prodName }}
@@ -200,8 +205,11 @@
 
 <!-- JAVASCRIPT -->
 <script>
+import ProductView from "@/components/ProductView.vue";
 export default {
-  components: {},
+  components: {
+    ProductView,
+  },
   computed: {
     products() {
       return this.$store.state.products;

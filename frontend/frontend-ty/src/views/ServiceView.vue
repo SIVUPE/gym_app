@@ -150,7 +150,7 @@
                 color: white;
               "
             >
-              View
+            <router-link :to="{ compoent: 'SingleView', params: { id: prodID } }">View</router-link>
             </button>
           </div>
         </div>
@@ -164,7 +164,8 @@
 <!-- JAVASCRIPT -->
 <script>
 export default {
-  components: {},
+  components: {
+  },
   computed: {
     products() {
       return this.$store.state.products;

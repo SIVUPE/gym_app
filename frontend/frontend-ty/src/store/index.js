@@ -11,9 +11,13 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: null
+    product: null,
+    selectProduct: null,
   },
   getters: {
+    setSelectProduct: (state) => {
+      return state.products.find((product) => product.id === state.selectedProduct);
+    }
   },
   mutations: {
     setUsers(state, value) {
@@ -28,6 +32,9 @@ export default createStore({
     setProduct(state, value) {
       state.product = value
     },
+    selectProduct ({ commit}, prodID) {
+      commit('selectProduct', prodID)
+    }
   },
   actions: {
     async register(context, payload) {
@@ -203,7 +210,7 @@ export default createStore({
           timer: 2000
         })
       }
-    }
+    },
   },
   modules: {
   }

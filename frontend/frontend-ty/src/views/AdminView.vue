@@ -3,8 +3,12 @@
   <div>
     <h1>Admin View</h1>
   </div>
-  <RouterLink to="/admin">Products</RouterLink>
-  <RouterLink to="/user">Users</RouterLink>
+  <button class="btn">
+    <RouterLink to="/admin">Products</RouterLink>
+  </button>
+  <button class="btn">
+    <RouterLink to="/user">Users</RouterLink>
+  </button> 
   <table class="table" v-if="products">
     <thead>
       <tr>
@@ -17,13 +21,13 @@
     </thead>
     <tbody v-for="product in products" :key="product.prodID">
       <tr>
-        <th scope="row"><img :src="product.prodUrl" alt="Admin" class="prod-img" /></th>
+        <th scope="row"><img :src="product.prodUrl" alt="Admin" width="100rem" class="prod-img" /></th>
         <td>{{ product.prodName }}</td>
         <td>{{ product.prodAmount }}</td>
         <td></td>
-        <td><button class="btn btn-dark" >Update</button></td>
-          <td><button class="btn btn-dark" @click="postProduct">Add</button></td>
-          <td><button class="btn btn-dark" @click="deleteProduct(product.prodID)" >Delete</button></td>
+        <td><button class="btn btn-dark" ><i class="bi bi-box-arrow-up-right"></i></button></td>
+          <td><button class="btn btn-dark" @click="postProduct"><i class="bi bi-bag-plus-fill"></i></button></td>
+          <td><button class="btn btn-dark" @click="deleteProduct(product.prodID)" ><i class="bi bi-trash3-fill"></i></button></td>
       </tr>
     </tbody>
   </table>

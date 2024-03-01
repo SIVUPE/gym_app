@@ -24,8 +24,8 @@
         <td>{{ user.emailAdd }}</td>
         <td>{{ user.gender }}</td>
         <td>{{ user.userRole }}</td>
-        <td><button class="btn btn-dark">Edit</button></td>
-        <td><button class="btn btn-dark">Delete</button></td>
+        <td><button class="btn btn-dark"><i class="bi bi-pencil-square"></i></button></td>
+        <td><button class="btn btn-dark"><i class="bi bi-person-x"></i></button></td>
       </tr>
     </tbody>
   </table>

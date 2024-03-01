@@ -2,7 +2,7 @@
   <section id="contact">
 <div class="contact-box">
   <div class="contact-links">
-    <h2>CONTACT</h2>
+    <h2>CONTACT </h2>
     <div class="links">
       <div class="link">
         <a><img  id="img" src="https://i.postimg.cc/m2mg2Hjm/linkedin.png" alt="linkedin"></a>

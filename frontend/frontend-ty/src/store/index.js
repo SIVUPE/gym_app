@@ -15,9 +15,7 @@ export default createStore({
     selectProduct: null,
   },
   getters: {
-    setSelectProduct: (state) => {
-      return state.products.find((product) => product.id === state.selectedProduct);
-    }
+    
   },
   mutations: {
     setUsers(state, value) {
@@ -32,8 +30,8 @@ export default createStore({
     setProduct(state, value) {
       state.product = value
     },
-    selectProduct ({ commit}, prodID) {
-      commit('selectProduct', prodID)
+    deleteProduct(state, value) {
+      state.products = value
     }
   },
   actions: {
@@ -211,7 +209,72 @@ export default createStore({
         })
       }
     },
+    // Create a new product
+    async addUser(context, payload) {
+      try {
+        const { msg } = await axios.post(`${baseURL}products`, payload)
+        if (msg) {
+          context.dispatch('fetchProducts')
+          sweet({
+            title: 'User Created Successfully',
+            text: msg,
+            icon: 'success',
+            timer: 4000
+          })
+        }
+      } catch (e) {
+        sweet({
+          title: 'User Creation Error!',
+          text: 'User Creation Unsuccessful',
+          icon: 'error',
+          timer: 4000
+        })
+      }
+    },
+
+    // Update an existing product
+    async updateProduct(context, payload) {
+      try {
+        const { msg } = await axios.patch(`${baseURL}products/update/${payload.id}`, payload)
+        if (msg) {
+          context.dispatch('fetchProducts')
+          sweet({
+            title: 'Product Update',
+            text: msg,
+            icon: 'success',
+            timer: 4000
+          })
+        }
+      } catch (e) {
+        sweet({
+          title: 'Product Update Error!',
+          text: 'Product Update Unsuccessful',
+          icon: 'error',
+          timer: 4000
+        })
+      }
+    },
+    async deleteProduct(context, payload) {
+      try {
+        const { msg } = await axios.delete(`${baseURL}products/${payload.id}`)
+        if (msg) {
+          context.dispatch('fetchProducts')
+          sweet({
+            title: 'Product Deletion',
+            text: msg,
+            icon: 'success',
+            timer: 4000
+          })
+        }
+      } catch (e) {
+        sweet({
+          title: 'Product Deletion Error!',
+          text: 'Product Deletion Unsuccessful',
+          icon: 'error',
+          timer: 4000
+        })
+      }
   },
   modules: {
   }
-})
+}});

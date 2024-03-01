@@ -1,7 +1,7 @@
 <!-- HTML -->
 <template>
   <div class="loader-container w-80 vh-80">
-    <img class="loader-image" src="https://i.ibb.co/k3RqrMD/Screenshot-2024-02-21-122216.pnghttps://i.ibb.co/phQZqDX/Screenshot-2024-02-21-132743.png" alt="">
+    <img class="loader-image" src="https://i.ibb.co/k3RqrMD/Screenshot-2024-02-21-122216.png" alt="">
   </div>
 </template>
 
@@ -24,18 +24,29 @@ export default {
   align-content: center;
   justify-content: center;
 }
+.loader-image {
+  width: 100%;
+  height: 400px;
+  margin-top: 200px;
+  margin-bottom: 202px;
+  animation: breathe infinite alternate;
+}
 
-@media only screen and (max-width: 600px) {
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+}
+  
+  @media only screen and (max-width: 600px) {
   .loader-container {
     background-color: #141414;
     width: 100%;
     height: 100%;
   }
-.loader-image {
-  width: 100px;
-  height: 100px;
-  margin-top: 200px;
-  margin-bottom: 202px;
-}
+
 }
 </style>

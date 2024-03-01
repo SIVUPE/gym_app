@@ -1,6 +1,7 @@
 <!-- HTML -->
 <template>
   <div class="services" w-100>
+    <Loader v-if="loading" />
     <div
       class="services-description"
       style="display: flex; flex-direction: column; text-align: center"
@@ -19,6 +20,7 @@
             height: 400px;
             display: flex;
             justify-content: center;
+            border-radius: 7px;
           "
           alt=""
         />
@@ -29,7 +31,7 @@
       <div class="home-content">
         <img
           src="https://i.ibb.co/7p70XFd/Gym-Background.jpg"
-          style="width: 400px; height: 400px"
+          style="width: 400px; height: 400px; border-radius: 7px"
           alt=""
         />
 
@@ -40,7 +42,7 @@
       <div class="home-content">
         <img
           src="https://i.ibb.co/pJwcG63/Magma-Sports-wear-Gym-Editorial-Shoot-6.jpg"
-          style="width: 400px; height: 400px"
+          style="width: 400px; height: 400px; border-radius: 7px"
           alt=""
         />
         <p class="text-container"><a href="#merch">MERCH</a></p>
@@ -57,7 +59,13 @@
         margin-top: 100px;
       "
     >
-      <input type="text" v-model="searchTerm" placeholder="Search..." />
+      <!-- Search Bar -->
+      <input
+        type="text"
+        v-model="searchTerm"
+        placeholder="Search..."
+        style="border-radius: 7px; width: 500px; display: flex; justify-content: center"
+      />
     </div>
     <!-- End of Search -->
 
@@ -73,7 +81,8 @@
           justify-content: space-evenly;
         "
       >
-      <router-link
+        <router-link
+          style="text-decoration: none"
           v-for="product in products"
           :to="'/singleview/products/' + product.prodID"
           :key="product.prodID"
@@ -83,18 +92,18 @@
               product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
           "
         >
-        <div
-          class="card-membership"
-          style="border: 10px solid grey; border-radius: 7px"
-        >
-          <div>
+          <div
+            class="card-membership"
+            style="border: 5px solid lightgray; border-radius: 7px; display: flex; justify-content: space-evenly; width: 500px"
+          >
             <div>
-              <h5>{{ product.prodName }}</h5>
-              <p>R{{ product.prodAmount }}</p>
-              <p>{{ product.prodDescrip }}</p>
+              <div>
+                <h5 style="color: #f9ef23">{{ product.prodName }}</h5>
+                <p style="color: white">R{{ product.prodAmount }}</p>
+                <h3 style="color: white">{{ product.prodDescrip }}</h3>
+              </div>
             </div>
           </div>
-        </div>
         </router-link>
       </div>
     </div>
@@ -103,7 +112,7 @@
     <!-- Classes -->
     <div style="display: flex; flex-direction: column; text-align: center">
       <h1 style="margin-top: 150px; color: #f9ef23">
-        <a id="memberships">CLASSES</a>
+        <a id="class">CLASSES</a>
       </h1>
       <div
         style="
@@ -112,7 +121,7 @@
           justify-content: space-evenly;
         "
       >
-      <router-link
+        <router-link
           v-for="product in products"
           :to="'/singleview/products/' + product.prodID"
           :key="product.prodID"
@@ -122,18 +131,18 @@
               product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
           "
         >
-        <div
-          class="card-classes"
-          style="border: 10px solid grey; border-radius: 7px"
-        >
-          <div>
-            <img :src="product.prodUrl" class="card-img-top" alt="..." />
+          <div
+            class="card-classes"
+            style="border: 10px solid grey; border-radius: 7px"
+          >
             <div>
-              <h5>{{ product.prodName }}</h5>
-              <p>R{{ product.prodAmount }}</p>
-              <p>{{ product.prodDescrip }}</p>
+              <img :src="product.prodUrl" class="card-img-top" alt="..." />
+              <div>
+                <h5>{{ product.prodName }}</h5>
+                <p>R{{ product.prodAmount }}</p>
+                <p>{{ product.prodDescrip }}</p>
+              </div>
             </div>
-          </div>
           </div>
         </router-link>
       </div>
@@ -170,10 +179,9 @@
               product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
           "
         >
-          <!-- Your product card content here -->
           <div class="card">
             <div>
-              <h5 style="color: white; text-align: center">
+              <h5 style="color: white; text-align: center; margin-top: 50px; text-decoration: none">
                 {{ product.prodName }}
               </h5>
               <img
@@ -185,15 +193,6 @@
               <p style="color: white; text-align: center">
                 R{{ product.prodAmount }}
               </p>
-              <div style="margin: 0 auto">
-                <button
-                  style="
-                    background-color: #6d690b;
-                    border-radius: 7px;
-                    color: white;
-                  "
-                ></button>
-              </div>
             </div>
           </div>
         </router-link>
@@ -205,24 +204,32 @@
 
 <!-- JAVASCRIPT -->
 <script>
-import ProductView from "@/components/ProductView.vue";
+import Loader from "@/components/Loader.vue";
+
 export default {
+  name: "ServiceView",
   components: {
-    ProductView,
+    Loader,
   },
   computed: {
     products() {
       return this.$store.state.products;
     },
-  },
-  mounted() {
-    this.$store.dispatch("fetchProducts");
-  },
+},
+mounted() {
+  this.$store.dispatch("fetchProducts");
+  setTimeout(() => {
+    this.loading = false;
+  }, 2000);
+},
+
 
   // Calling Individual Products
   data() {
     return {
       searchTerm: "",
+      selectedCategory: "",
+      loading: true,
       products: [
         {
           prodID: 1,
@@ -311,7 +318,7 @@ export default {
 
 .image-content {
   display: flex;
-  margin-top: 50px;
+  margin-top: 10px;
   justify-content: space-between;
 }
 
@@ -345,5 +352,27 @@ export default {
   width: 268px;
   height: 326px;
   border-radius: 7px;
+}
+
+.home-content:hover img {
+  filter: brightness(70%);
+  transition: filter 0.3s ease;
+  border-radius: 7px;
+}
+
+.home-content:hover .text-container {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 </style>

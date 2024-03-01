@@ -1,9 +1,24 @@
 <template>
-  <div v-if="product">
-    <img :src="product.prodUrl" alt="Product Image" />
-    <h1>{{ product.prodID }}</h1>
-    <h1>{{ product.prodName }}</h1>
-    <h1>{{ product.prodAmount }}</h1>
+  <div 
+  class="productView" w-100
+  style="display: flex; justify-content: space-evenly"
+  v-if="product">
+  <div class="card">
+    <img class="card-img-top" :src="product.prodUrl" alt="Product Image">
+  </div>
+    <div style="margin-top: 100px; margin-left: 100px; width: 300px">
+    <h1 style="color: yellow">{{ product.prodName }}</h1>
+    <p style="color: white">Description: {{ product.prodDescrip }}</p>
+    <h1 style="color: white">Quantity: {{ product.prodQuantity }}x</h1>
+    <button>
+      <router-link
+        to="/services"
+        class="service-link"
+        style="font-family: 'Manrope', sans-serif; "
+        >Back To Services
+      </router-link>
+    </button>
+    </div>
   </div>
 </template>
 
@@ -76,17 +91,13 @@ export default {
           prodCategory: "Classes",
           prodUrl: "https://i.ibb.co/gmVwR54/Boxing-070.webp",
         },
-      ],
+      ]
     };
   },
   computed: {
     product() {
       const prodID = parseInt(this.$route.params.id);
-      return (
-        this.$store.state.products.find(
-          (product) => product.prodID === prodID
-        ) || null
-      );
+      return this.$store.state.products.find(product => product.prodID === prodID) || null;
     },
   },
   mounted() {
@@ -96,3 +107,28 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.productView {
+  background-color: #141414;
+}
+
+.card {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    10deg,
+    rgb(0, 0, 0) 10%,
+    rgba(249, 239, 35, 1) 80%
+  );
+  width: 436px;
+  height: 501px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+.card-img-top {
+  width: 350px;
+  height: 400px;
+  border-radius: 7px;
+}
+</style>

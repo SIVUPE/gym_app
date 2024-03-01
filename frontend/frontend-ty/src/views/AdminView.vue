@@ -21,9 +21,9 @@
         <td>{{ product.prodName }}</td>
         <td>{{ product.prodAmount }}</td>
         <td></td>
-        <td><button class="btn btn-dark" href="">Update</button></td>
-        <td><button class="btn btn-dark" href="">Add</button></td>
-        <td><button class="btn btn-dark" href="">Delete</button></td>
+        <td><button class="btn btn-dark" @click="updateUser(product)">Update</button></td>
+          <td><button class="btn btn-dark" @click="addUser()">Add</button></td>
+          <td><button class="btn btn-dark" @click="deleteUser(product)">Delete</button></td>
       </tr>
     </tbody>
   </table>
@@ -35,6 +35,20 @@ export default {
   computed: {
     products() {
       return this.$store.state.products;
+    },
+  },
+  methods: {
+    updateUser(product) {
+    
+      this.$store.dispatch('updateProduct', product);
+    },
+    addUser() {
+     
+      // this.$store.dispatch('createProduct', { '' });
+    },
+    deleteUser(product) {
+      
+      this.$store.dispatch('deleteUser', product);
     },
   },
   mounted() {

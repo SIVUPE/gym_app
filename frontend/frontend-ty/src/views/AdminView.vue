@@ -17,7 +17,7 @@
     </thead>
     <tbody v-for="product in products" :key="product.prodID">
       <tr>
-        <th scope="row"><img :src="product.prodUrl" alt="Admin" /></th>
+        <th scope="row"><img :src="product.prodUrl" alt="Admin" class="prod-img" /></th>
         <td>{{ product.prodName }}</td>
         <td>{{ product.prodAmount }}</td>
         <td></td>
@@ -70,3 +70,13 @@ const deleteProduct = (prodID) => {
   }
   };
 </script>
+
+<style>
+/* MEDIA QUERIES */
+@media only screen and (max-width: 600px) {
+img{
+  width: 50px;
+  height: 50px
+}
+}
+</style>

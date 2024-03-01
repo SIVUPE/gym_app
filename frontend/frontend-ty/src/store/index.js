@@ -4,7 +4,7 @@ import sweet from 'sweetalert'
 import { useCookies } from 'vue3-cookies'
 const {cookies} = useCookies()
 import router from '@/router'
-// import AuthenticateUser from '@/service/AuthenticateUser'
+import AuthenticateUser from '@/service/AuthenticateUser'
 const baseURL = 'https://gym-app-8i2h.onrender.com/'
 export default createStore({
   state: {
@@ -12,10 +12,8 @@ export default createStore({
     user: null,
     products: null,
     product: null,
-    selectProduct: null,
   },
   getters: {
-    
   },
   mutations: {
     setUsers(state, value) {
@@ -30,37 +28,33 @@ export default createStore({
     setProduct(state, value) {
       state.product = value
     },
-    deleteProduct(state, value) {
-      state.products = value
-    }
   },
   actions: {
     async register(context, payload) {
-      try{
-        let {data} = (await axios.post(`${baseURL}users/register`, payload)).data
-        if(data) {
-          context.dispatch('fetchUsers')
+      try {
+        let { data } = (await axios.post(`${baseURL}users/register`, payload)).data;
+        if (data) {
+          context.dispatch('fetchUsers');
           sweet({
             title: 'Registration',
-            text: msg,
+            text: data.msg,
             icon: "success",
             timer: 4000
-          })
-          //
-          router.push({name: 'login'})
+          });
+          router.push({ name: 'login' });
         }
-      }catch(e) {
+      } catch (e) {
         sweet({
           title: 'Registration Error!',
           text: 'Registration Incomplete',
           icon: "error",
           timer: 4000
-        })
+        });
       }
     },
     async fetchUsers(context) {
       try{
-        let {results} = (await axios.get(`${baseURL}` + `users`)).data
+        let { results } = (await axios.get(`${baseURL}users`)).data
         if(results) {
           context.commit('setUsers', results)
         }
@@ -209,72 +203,7 @@ export default createStore({
         })
       }
     },
-    // Create a new product
-    async addUser(context, payload) {
-      try {
-        const { msg } = await axios.post(`${baseURL}products`, payload)
-        if (msg) {
-          context.dispatch('fetchProducts')
-          sweet({
-            title: 'User Created Successfully',
-            text: msg,
-            icon: 'success',
-            timer: 4000
-          })
-        }
-      } catch (e) {
-        sweet({
-          title: 'User Creation Error!',
-          text: 'User Creation Unsuccessful',
-          icon: 'error',
-          timer: 4000
-        })
-      }
-    },
-
-    // Update an existing product
-    async updateProduct(context, payload) {
-      try {
-        const { msg } = await axios.patch(`${baseURL}products/update/${payload.id}`, payload)
-        if (msg) {
-          context.dispatch('fetchProducts')
-          sweet({
-            title: 'Product Update',
-            text: msg,
-            icon: 'success',
-            timer: 4000
-          })
-        }
-      } catch (e) {
-        sweet({
-          title: 'Product Update Error!',
-          text: 'Product Update Unsuccessful',
-          icon: 'error',
-          timer: 4000
-        })
-      }
-    },
-    async deleteProduct(context, payload) {
-      try {
-        const { msg } = await axios.delete(`${baseURL}products/${payload.id}`)
-        if (msg) {
-          context.dispatch('fetchProducts')
-          sweet({
-            title: 'Product Deletion',
-            text: msg,
-            icon: 'success',
-            timer: 4000
-          })
-        }
-      } catch (e) {
-        sweet({
-          title: 'Product Deletion Error!',
-          text: 'Product Deletion Unsuccessful',
-          icon: 'error',
-          timer: 4000
-        })
-      }
-  },
-  modules: {
-  }
+},
+modules: {
+    
 }});

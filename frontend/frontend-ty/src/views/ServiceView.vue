@@ -1,6 +1,6 @@
 <!-- HTML -->
 <template>
-  <div class="services" w-100>
+  <div class="services" w-100 style="overflow: none;">
     <Loader v-if="loading" />
     <div
       class="services-description"
@@ -15,13 +15,6 @@
       <div class="home-content">
         <img
           src="https://i.ibb.co/8jSDb8r/Non-Zero-Gravity-Activewear.jpg"
-          style="
-            width: 400px;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            border-radius: 7px;
-          "
           alt=""
         />
         <p class="text-container"><a href="#memberships">MEMBERSHIP</a></p>
@@ -29,11 +22,7 @@
 
       <!-- image 2 -->
       <div class="home-content">
-        <img
-          src="https://i.ibb.co/7p70XFd/Gym-Background.jpg"
-          style="width: 400px; height: 400px; border-radius: 7px"
-          alt=""
-        />
+        <img src="https://i.ibb.co/7p70XFd/Gym-Background.jpg" alt="" />
 
         <p class="text-container"><a href="#classes">CLASSES</a></p>
       </div>
@@ -42,7 +31,6 @@
       <div class="home-content">
         <img
           src="https://i.ibb.co/pJwcG63/Magma-Sports-wear-Gym-Editorial-Shoot-6.jpg"
-          style="width: 400px; height: 400px; border-radius: 7px"
           alt=""
         />
         <p class="text-container"><a href="#merch">MERCH</a></p>
@@ -60,27 +48,16 @@
       "
     >
       <!-- Search Bar -->
-      <input
-        type="text"
-        v-model="searchTerm"
-        placeholder="Search..."
-        style="border-radius: 7px; width: 500px; display: flex; justify-content: center"
-      />
+      <input type="text" v-model="searchTerm" placeholder="Search..." />
     </div>
     <!-- End of Search -->
 
     <!-- Memberships -->
-    <div style="display: flex; flex-direction: column; text-align: center">
+    <div class="services-div">
       <h1 style="margin-top: 150px; color: #f9ef23">
-        <a id="memberships">Memberships</a>
+        <a id="memberships">MEMBERSHIPS</a>
       </h1>
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          justify-content: space-evenly;
-        "
-      >
+      <div class="memberships">
         <router-link
           style="text-decoration: none"
           v-for="product in products"
@@ -92,11 +69,8 @@
               product.prodName.toLowerCase().includes(searchTerm.toLowerCase()))
           "
         >
-          <div
-            class="card-membership"
-            style="border: 5px solid lightgray; border-radius: 7px; display: flex; justify-content: space-evenly; width: 500px"
-          >
-            <div>
+          <div class="card-membership">
+            <div class="card-membership-descrip">
               <div>
                 <h5 style="color: #f9ef23">{{ product.prodName }}</h5>
                 <p style="color: white">R{{ product.prodAmount }}</p>
@@ -110,18 +84,13 @@
     <!-- End of Memberships -->
 
     <!-- Classes -->
-    <div style="display: flex; flex-direction: column; text-align: center">
+    <div class="services-div">
       <h1 style="margin-top: 150px; color: #f9ef23">
         <a id="class">CLASSES</a>
       </h1>
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          justify-content: space-evenly;
-        "
-      >
+      <div class="class">
         <router-link
+          style="text-decoration: none"
           v-for="product in products"
           :to="'/singleview/products/' + product.prodID"
           :key="product.prodID"
@@ -133,14 +102,14 @@
         >
           <div
             class="card-classes"
-            style="border: 10px solid grey; border-radius: 7px"
+            style="border: 10px solid grey; border-radius: 7px; padding: 10px;"
           >
             <div>
               <img :src="product.prodUrl" class="card-img-top" alt="..." />
               <div>
-                <h5>{{ product.prodName }}</h5>
-                <p>R{{ product.prodAmount }}</p>
-                <p>{{ product.prodDescrip }}</p>
+                <h5 style="color: yellow">{{ product.prodName }}</h5>
+                <p style="color: white">R{{ product.prodAmount }}</p>
+                <p style="color: white">{{ product.prodDescrip }}</p>
               </div>
             </div>
           </div>
@@ -150,7 +119,7 @@
     <!-- End of Classes -->
 
     <!-- Merch -->
-    <div style="display: flex; flex-direction: column; text-align: center">
+    <div class="merch">
       <h1 style="margin-top: 150px; color: #f9ef23">
         <a id="merch">OUR MERCH</a>
       </h1>
@@ -162,13 +131,7 @@
         feel your best during every workout, making it the top choice for
         fitness enthusiasts."
       </p>
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          justify-content: space-evenly;
-        "
-      >
+      <div class="merch-div">
         <router-link
           v-for="product in products"
           :to="'/singleview/products/' + product.prodID"
@@ -181,7 +144,14 @@
         >
           <div class="card">
             <div>
-              <h5 style="color: white; text-align: center; margin-top: 50px; text-decoration: none">
+              <h5
+                style="
+                  color: white;
+                  text-align: center;
+                  margin-top: 50px;
+                  text-decoration: none;
+                "
+              >
                 {{ product.prodName }}
               </h5>
               <img
@@ -215,14 +185,13 @@ export default {
     products() {
       return this.$store.state.products;
     },
-},
-mounted() {
-  this.$store.dispatch("fetchProducts");
-  setTimeout(() => {
-    this.loading = false;
-  }, 2000);
-},
-
+  },
+  mounted() {
+    this.$store.dispatch("fetchProducts");
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  },
 
   // Calling Individual Products
   data() {
@@ -303,6 +272,12 @@ mounted() {
 
 <!-- CSS -->
 <style scoped>
+h1 {
+  font-size: 80px;
+  margin-bottom: 20px;
+  font-weight: 1000;
+}
+
 .services {
   background-color: #141414;
   color: white;
@@ -320,6 +295,47 @@ mounted() {
   display: flex;
   margin-top: 10px;
   justify-content: space-between;
+}
+
+.image-content img {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  border-radius: 7px;
+}
+
+input {
+  border-radius: 7px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.services-div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.class {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.memberships {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.merch-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .home-content {
@@ -348,10 +364,24 @@ mounted() {
   margin-top: 50px;
 }
 
+.card-membership {
+  border: 5px solid lightgray;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 500px;
+}
+
 .card-img-top {
   width: 268px;
   height: 326px;
   border-radius: 7px;
+}
+
+.merch {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .home-content:hover img {
@@ -374,5 +404,101 @@ mounted() {
   color: white;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 600px) {
+  .image-content img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .image-content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-left: 50px;
+  }
+
+  a {
+    margin-left: 0px;
+  }
+
+  input {
+    border-radius: 7px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 300px;
+  }
+
+  .services-div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #memberships {
+    font-size: large;
+  }
+
+  .memberships {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .card-membership {
+    width: 300px;
+    margin-left: 50px;
+  }
+
+  .card-membership h3 {
+    font-size: xx-small;
+    padding: none;
+  }
+
+  .card-membership-descrip {
+    padding: none;
+    width: 0 auto;
+  }
+
+  #class {
+    font-size: large;
+  }
+
+  .class {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  #merch {
+    font-size: large;
+  }
+
+  .merch-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .card div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .card {
+    width: 300px;
+    margin-left: 50px;
+  }
+
+  .card img {
+    width: 300px;
+    height: 300px;
+  }
 }
 </style>

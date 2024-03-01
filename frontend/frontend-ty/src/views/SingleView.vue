@@ -1,12 +1,11 @@
 <template>
   <div 
   class="productView" w-100
-  style="display: flex; justify-content: space-evenly"
   v-if="product">
   <div class="card">
     <img class="card-img-top" :src="product.prodUrl" alt="Product Image">
   </div>
-    <div style="margin-top: 100px; margin-left: 100px; width: 300px">
+    <div class="product-description">
     <h1 style="color: yellow">{{ product.prodName }}</h1>
     <p style="color: white">Description: {{ product.prodDescrip }}</p>
     <h1 style="color: white">Quantity: {{ product.prodQuantity }}x</h1>
@@ -109,8 +108,13 @@ export default {
 </script>
 
 <style scoped>
+
+.product-description {
+  margin-top: 100px; margin-left: 100px; width: 300px
+}
 .productView {
   background-color: #141414;
+  display: flex; justify-content: space-evenly
 }
 
 .card {
@@ -130,5 +134,39 @@ export default {
   width: 350px;
   height: 400px;
   border-radius: 7px;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 600px) {
+  .card {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    10deg,
+    rgb(0, 0, 0) 10%,
+    rgba(249, 239, 35, 1) 80%
+  );
+  width: 436px;
+  height: 501px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+}
+
+.card-img-top {
+  width: 300px;
+    height: 300px;
+  border-radius: 7px;
+}
+
+.card div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .productView {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 }
 </style>

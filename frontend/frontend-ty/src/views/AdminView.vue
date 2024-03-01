@@ -21,9 +21,9 @@
         <td>{{ product.prodName }}</td>
         <td>{{ product.prodAmount }}</td>
         <td></td>
-        <td><button class="btn btn-dark" @click="updateUser(product)">Update</button></td>
-          <td><button class="btn btn-dark" @click="addUser()">Add</button></td>
-          <td><button class="btn btn-dark" @click="deleteUser(product)">Delete</button></td>
+        <td><button class="btn btn-dark" >Update</button></td>
+          <td><button class="btn btn-dark">Add</button></td>
+          <td><button class="btn btn-dark" >Delete</button></td>
       </tr>
     </tbody>
   </table>
@@ -37,22 +37,40 @@ export default {
       return this.$store.state.products;
     },
   },
-  methods: {
-    updateUser(product) {
-    
-      this.$store.dispatch('updateProduct', product);
-    },
-    addUser() {
-     
-      // this.$store.dispatch('createProduct', { '' });
-    },
-    deleteUser(product) {
-      
-      this.$store.dispatch('deleteUser', product);
-    },
-  },
   mounted() {
     this.$store.dispatch("fetchProducts");
   },
 };
+const prodID = ref(null);
+    const prodName = ref(null);
+    const quantity = ref(null);
+    const amount = ref(null);
+    const prodUrl = ref(null);
+    const editMode = ref(false);
+    let editproduct = null;
+
+const deleteProduct = (prodID) => {
+      const confirmDelete = window.confirm('Are you sure you want to delete this product?');
+      if (confirmDelete) {
+        store.dispatch('deleteProduct', prodID);
+        window.alert('Product has been deleted.');
+      }
+    };
+    const postProduct = () => {
+      const newProduct = {
+        prodName: prodName.value,
+        quantity: quantity.value,
+        amount: amount.value,
+        prodUrl: prodUrl.value
+      };
+      store.dispatch('postProduct', newProduct);
+      clearFields();
+      window.alert('Product has been added.');
+    };
+    // return(){
+    //   prodID,
+    //   postProduct,
+    //   deleteProduct
+
+    // }
 </script>

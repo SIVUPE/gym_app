@@ -25,9 +25,9 @@
         <td>{{ product.prodName }}</td>
         <td>{{ product.prodAmount }}</td>
         <td></td>
-        <td><button class="btn btn-dark" ><i class="bi bi-box-arrow-up-right"></i></button></td>
-          <td><button class="btn btn-dark" @click="postProduct"><i class="bi bi-bag-plus-fill"></i></button></td>
-          <td><button class="btn btn-dark" @click="deleteProduct(product.prodID)" ><i class="bi bi-trash3-fill"></i></button></td>
+        <td><button class="btn btn-dark" ><i class="bi bi-box-arrow-up-right"></i>96</button></td>
+          <td><button class="btn btn-dark" @click="postProduct"><i class="bi bi-bag-plus-fill">#$</i></button></td>
+          <td><button class="btn btn-dark" @click="deleteProduct(product.prodID)" ><i class="bi bi-trash3-fill"></i>delete</button></td>
       </tr>
     </tbody>
   </table>
@@ -41,38 +41,41 @@ export default {
       return this.$store.state.products;
     },
   },
-  mounted() {
-    this.$store.dispatch("fetchProducts");
-  
-
-
-
-const deleteProduct = (prodID) => {
-      const confirmDelete = window.confirm('Are you sure you want to delete this product?');
-      if (confirmDelete) {
-        store.dispatch('deleteProduct', prodID);
-        window.alert('Product has been deleted.');
-      }
-    };
-    const postProduct = () => {
-      const newProduct = {
-        prodName: prodName.value,
-        quantity: quantity.value,
-        amount: amount.value,
-        prodUrl: prodUrl.value
-      };
-      store.dispatch('postProduct', newProduct);
-      clearFields();
-      window.alert('Product has been added.');
-    };
-    return {
-     
-      postProduct,
-      deleteProduct
-
+  methods: {
+    deleteProduct: function (prodID) {
+    const confirmDelete = window.confirm('Are you sure you want to delete this product?');
+    if (confirmDelete) {
+      this.$store.dispatch('delProd', { prodID })
+        .then(() => {
+          window.alert('Product has been deleted.');
+        })
+        .catch((error) => {
+          console.error('Error deleting product', error);
+          window.alert('Error deleting product. Please try again.');
+        });
     }
-  }
+  },
+  postProduct: function () {
+    const newProduct = {
+      prodName: prodName.value,
+      quantity: quantity.value,
+      amount: amount.value,
+      prodUrl: prodUrl.value
+    };
+
+    this.$store.dispatch('postProduct', newProduct)
+      .then(() => {
+        clearFields();
+        window.alert('Product has been added.');
+      })
+      .catch((error) => {
+        console.error('Error adding product', error);
+        window.alert('Error adding product. Please try again.');
+      });
+  },
+},
   };
+  
 </script>
 
 <style>

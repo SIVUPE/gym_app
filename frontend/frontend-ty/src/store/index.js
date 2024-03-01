@@ -110,6 +110,23 @@ export default createStore({
         })
       }
     },
+    async delProd({ commit }, payload) {
+      try {
+        console.log('This is running');
+        const response = await axios.delete(`${baseURL}products/delete/${payload.prodID}`);
+        
+        // Optionally, you can commit a mutation or handle the response in any way you need
+        // For example, committing a mutation:
+        // commit('DELETE_PRODUCT', payload.prodID);
+  
+        console.log('Product deleted successfully', response);
+      } catch (error) {
+        console.error('Error deleting product', error);
+        // Optionally, you can commit an error mutation or handle the error in any way you need
+        // For example, committing an error mutation:
+        // commit('SET_ERROR', error.message);
+      }
+    },
     // async deleteUser(context, payload) {
     //   try{
     //     let {msg} = await axios.delete(`${baseURL}users/${payload.id}`)
@@ -217,12 +234,6 @@ async postProduct({ commit }, newItem) {
   await axios.delete(baseUrl+`/products/${prodID}`)
   window.location.reload()
  },
-
-
-
-
-
-
 
 modules: {
     

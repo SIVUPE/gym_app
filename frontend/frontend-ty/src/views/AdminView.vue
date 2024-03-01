@@ -25,9 +25,9 @@
         <td>{{ product.prodName }}</td>
         <td>{{ product.prodAmount }}</td>
         <td></td>
-        <td><button class="btn btn-dark" ><i class="bi bi-box-arrow-up-right"></i>96</button></td>
-          <td><button class="btn btn-dark" @click="postProduct"><i class="bi bi-bag-plus-fill">#$</i></button></td>
-          <td><button class="btn btn-dark" @click="deleteProduct(product.prodID)" ><i class="bi bi-trash3-fill"></i>delete</button></td>
+        <td><button class="btn btn-warning" ><i class="bi bi-box-arrow-up-right"></i>96</button></td>
+          <td><button class="btn btn-warning" @click="postProduct"><i class="bi bi-bag-plus-fill">#$</i></button></td>
+          <td><button class="btn btn-warning" @click="deleteProduct(product.prodID)" ><i class="bi bi-trash3-fill"></i>delete</button></td>
       </tr>
     </tbody>
   </table>
@@ -81,9 +81,8 @@ export default {
 <style>
 /* MEDIA QUERIES */
 @media only screen and (max-width: 600px) {
-img{
-  width: 50px;
-  height: 50px
+.btn{
+  background-color: yellow;
 }
 }
 </style>

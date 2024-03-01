@@ -2,8 +2,9 @@
 <template>
   <div>
     <h1>User View</h1>
-    <RouterLink to="/admin">Products</RouterLink>
-    <RouterLink to="/user">Users</RouterLink>
+    <button class="btn btn-warning"><RouterLink to="/admin">Products</RouterLink></button>
+    <button class="btn btn-warning"><RouterLink to="/user">Users</RouterLink></button>
+    
   </div>
 
     <table class="table" v-if="users" >

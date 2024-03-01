@@ -110,27 +110,27 @@ export default createStore({
         })
       }
     },
-    async deleteUser(context, payload) {
-      try{
-        let {msg} = await axios.delete(`${baseURL}users/${payload.id}`)
-        if(msg) {
-          context.dispatch('fetchUsers')
-          sweet({
-            title: 'User Removed Successfully',
-            text: msg,
-            icon: "success",
-            timer: 4000
-          })
-        }
-      }catch(e) {
-        sweet({
-          title: 'User Removal Error!',
-          text: 'Deleting User Unsuccessful',
-          icon: "error",
-          timer: 4000
-        })
-      }
-    },
+    // async deleteUser(context, payload) {
+    //   try{
+    //     let {msg} = await axios.delete(`${baseURL}users/${payload.id}`)
+    //     if(msg) {
+    //       context.dispatch('fetchUsers')
+    //       sweet({
+    //         title: 'User Removed Successfully',
+    //         text: msg,
+    //         icon: "success",
+    //         timer: 4000
+    //       })
+    //     }
+    //   }catch(e) {
+    //     sweet({
+    //       title: 'User Removal Error!',
+    //       text: 'Deleting User Unsuccessful',
+    //       icon: "error",
+    //       timer: 4000
+    //     })
+    //   }
+    // },
     async login(context, payload) {
       try{
        const {msg, token, result} = (await axios.post(`${baseURL}users/login`, payload)).data
@@ -204,6 +204,26 @@ export default createStore({
       }
     },
 },
+async postProduct({ commit }, newItem) {
+  try {
+    await axios.post(baseUrl + '/products', newItem);
+    commit('fetchProducts');
+  } catch (error) {
+    console.error(error);
+    window.location.reload()
+  }
+},
+ async deleteProduct({commit}, prodID){
+  await axios.delete(baseUrl+`/products/${prodID}`)
+  window.location.reload()
+ },
+
+
+
+
+
+
+
 modules: {
     
 }});

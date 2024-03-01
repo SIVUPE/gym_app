@@ -22,8 +22,8 @@
         <td>{{ product.prodAmount }}</td>
         <td></td>
         <td><button class="btn btn-dark" >Update</button></td>
-          <td><button class="btn btn-dark">Add</button></td>
-          <td><button class="btn btn-dark" >Delete</button></td>
+          <td><button class="btn btn-dark" @click="postProduct">Add</button></td>
+          <td><button class="btn btn-dark" @click="deleteProduct(product.prodID)" >Delete</button></td>
       </tr>
     </tbody>
   </table>
@@ -39,15 +39,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch("fetchProducts");
-  },
-};
-const prodID = ref(null);
-    const prodName = ref(null);
-    const quantity = ref(null);
-    const amount = ref(null);
-    const prodUrl = ref(null);
-    const editMode = ref(false);
-    let editproduct = null;
+  
+
+
 
 const deleteProduct = (prodID) => {
       const confirmDelete = window.confirm('Are you sure you want to delete this product?');
@@ -67,10 +61,12 @@ const deleteProduct = (prodID) => {
       clearFields();
       window.alert('Product has been added.');
     };
-    // return(){
-    //   prodID,
-    //   postProduct,
-    //   deleteProduct
+    return {
+     
+      postProduct,
+      deleteProduct
 
-    // }
+    }
+  }
+  };
 </script>
